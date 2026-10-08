@@ -205,9 +205,8 @@ p:last-child{margin-bottom:0;}
    ============================================================ */
 #usmiech{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);text-align:center;}
 .big-ask{font-size:var(--fs-h2);margin:0 0 1.4rem;}
-.ask{position:relative;height:11.5rem;margin-top:1.9rem;}
+.ask{margin-top:1.9rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;}
 .smile-btn{
-  position:absolute;left:50%;top:0;transform:translateX(-50%);
   border:none;border-radius:999px;
   padding:1.05rem 2rem;min-height:52px;
   background:linear-gradient(135deg,var(--pink),var(--pink-deep));
@@ -217,20 +216,35 @@ p:last-child{margin-bottom:0;}
   cursor:pointer;touch-action:manipulation;
   transition:transform .22s var(--ease),box-shadow .22s var(--ease);
 }
-.smile-btn:active{transform:translateX(-50%) scale(.95);box-shadow:0 6px 16px -8px rgba(168,80,95,.6);}
+.smile-btn:active{transform:scale(.95);box-shadow:0 6px 16px -8px rgba(168,80,95,.6);}
 
+/* Przycisk-żart: wygląda jak przycisk, ale celowo nie działa. */
 .no-btn{
-  position:absolute;left:50%;top:5.4rem;
-  transform:translate(calc(-50% + var(--dx,0px)),var(--dy,0px));
-  border:1px solid rgba(107,82,72,.3);border-radius:999px;
-  padding:.8rem 1.4rem;min-height:44px;
-  background:transparent;color:var(--ink-soft);
+  border:1px dashed rgba(107,82,72,.32);border-radius:999px;
+  padding:.78rem 1.4rem;min-height:44px;
+  background:transparent;color:var(--ink-faint);
   font-weight:600;font-size:.92rem;
-  cursor:pointer;touch-action:manipulation;
-  transition:transform .3s var(--ease),opacity .3s var(--ease),border-color .3s;
+  cursor:not-allowed;
   white-space:nowrap;
+  opacity:.65;
 }
-.no-btn.gives-up{border-color:var(--pink-deep);color:var(--pink-deep);}
+.no-note{
+  font-size:.76rem;color:var(--ink-faint);font-style:italic;
+  margin:0;letter-spacing:.01em;
+}
+
+/* Reszta strony odsłania się dopiero po kliknięciu „Tak”. */
+.zamkniete{display:none;}
+.odblokowane{animation:odsloniecie .75s var(--ease-out) both;}
+@keyframes odsloniecie{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.dalej{
+  margin-top:1.4rem;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pink-deep);font-weight:700;opacity:0;
+  transition:opacity .5s ease .35s;
+}
+.dalej.on{opacity:1;}
+.dalej span{display:block;font-size:1.2rem;letter-spacing:0;margin-top:.2rem;animation:strzalka 1.8s ease-in-out infinite;}
+@keyframes strzalka{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
 .smile-reply{
   margin-top:1.5rem;
   max-height:0;opacity:0;overflow:hidden;
@@ -526,7 +540,7 @@ p:last-child{margin-bottom:0;}
       </li>
       <li class="thing rv" style="--d:280ms">
         <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="18" width="34" height="22" rx="3" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/><rect x="13" y="11" width="8" height="8" rx="2" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/><rect x="27" y="11" width="8" height="8" rx="2" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/></svg>
-        <div><h3>Lego</h3><p>Nawet jak złożyliśmy Creepera źle i trzeba było rozbierać go klocek po klocku, było super. Instrukcja mówi 45 minut — nam zawsze zajmuje trzy godziny i to jest najlepsza część.</p></div>
+        <div><h3>Lego</h3><p>Nawet jak złożyliśmy Creepera źle i trzeba było rozbierać go klocek po klocku, było super. Instrukcja mówiła 45 minut — nam zajęło trzy godziny i to była najlepsza część.</p></div>
       </li>
     </ul>
   </div>
@@ -555,7 +569,7 @@ p:last-child{margin-bottom:0;}
       <figure class="pol rv-s">
         <picture><source srcset="img/kladka.webp" type="image/webp">
         <img src="img/kladka.jpg" width="1024" height="768" alt="My dwoje na drewnianej kładce w lesie" loading="lazy" decoding="async"></picture>
-        <figcaption>Ta sukienka. Ten las. Ten dzień.</figcaption>
+        <figcaption>Twoje ulubione wdzianko.<br>(Muszę jeszcze do niego schudnąć parę kilo.)</figcaption>
       </figure>
 
       <figure class="pol duo rv-s">
@@ -578,17 +592,20 @@ p:last-child{margin-bottom:0;}
 
     <div class="ask rv" style="--d:240ms" id="ask">
       <button class="smile-btn" id="takBtn">Tak</button>
-      <button class="no-btn" id="nieBtn">nie mam nastroju</button>
+      <button class="no-btn" id="nieBtn" disabled aria-disabled="true" tabindex="-1">nie mam nastroju</button>
+      <p class="no-note">ten jeden celowo nie działa</p>
     </div>
 
     <div class="smile-reply" id="smileReply">
       <p id="smileText">Wiedziałem.<br>I tak, dokładnie o to chodziło.</p>
     </div>
+
+    <p class="dalej" id="dalej" aria-hidden="true">reszta odblokowana<span>↓</span></p>
   </div>
 </section>
 
 <!-- ============================ PUPA ============================ -->
-<section class="sec" id="pupa">
+<section class="sec zamkniete" id="pupa">
   <div class="wrap">
     <button class="pupa-tap" id="pupaBtn" aria-label="Dotknij Pupy">
     <svg class="pupa-svg pupa-float" id="pupaSvg" viewBox="0 0 200 180" aria-hidden="true">
@@ -622,7 +639,7 @@ p:last-child{margin-bottom:0;}
 </section>
 
 <!-- ============================ FONDANT ============================ -->
-<section class="sec sec--dark" id="fondant">
+<section class="sec sec--dark zamkniete" id="fondant">
   <div class="wrap">
     <p class="eyebrow rv">mam sprawę</p>
     <h2 class="rv" style="--d:70ms">Zapraszam Cię na fondant.</h2>
@@ -643,7 +660,7 @@ p:last-child{margin-bottom:0;}
 </section>
 
 <!-- ============================ FINAŁ ============================ -->
-<section class="sec" id="final">
+<section class="sec zamkniete" id="final">
   <div class="wrap">
     <h2 class="final-line rv">Miłego dnia na uczelni.</h2>
     <p class="lead muted rv" style="--d:110ms">Nie mam na koniec nic mądrego. Po prostu bardzo się cieszę, że jesteś.</p>
@@ -830,89 +847,37 @@ p:last-child{margin-bottom:0;}
   function recall(k){ try{ return localStorage.getItem('julia:' + k); }catch(e){ return null; } }
 
   /* ---------- przyciski ---------- */
-  var ask   = document.getElementById('ask'),
-      tak   = document.getElementById('takBtn'),
-      nie   = document.getElementById('nieBtn'),
+  var tak   = document.getElementById('takBtn'),
       sr    = document.getElementById('smileReply'),
-      sText = document.getElementById('smileText');
+      dalej = document.getElementById('dalej');
 
-  var UNIKI = ['uhm...', 'nie tak szybko', 'ostatnia szansa'];
-  var uniki = 0, poddala = false;
-
-  /* przycisk "nie mam nastroju" ucieka — ale najwyżej 3 razy i sam się poddaje.
-     Żart jest ze mnie, nie z niej: oba wyjścia prowadzą w to samo ciepłe miejsce. */
-  function ucieknij(e){
-    if (poddala) return;
-    if (e && e.cancelable) e.preventDefault();
-    uniki++;
-
-    if (uniki > UNIKI.length){
-      poddaj();
-      return;
-    }
-    nie.textContent = UNIKI[uniki - 1];
-
-    var box = ask.getBoundingClientRect(), b = nie.getBoundingClientRect();
-    var zapasX = Math.max(0, (box.width - b.width) / 2 - 6);
-    var gora   = -(b.top - box.top) + 6;
-    var dol    = (box.bottom - b.bottom) - 6;
-
-    var dx = (Math.random() * 2 - 1) * zapasX;
-    var dy = gora + Math.random() * Math.max(0, dol - gora);
-
-    nie.style.setProperty('--dx', Math.round(dx) + 'px');
-    nie.style.setProperty('--dy', Math.round(dy) + 'px');
-  }
-
-  function poddaj(){
-    poddala = true;
-    nie.classList.add('gives-up');
-    nie.textContent = 'no dobra, wygrałaś';
-    nie.style.setProperty('--dx', '0px');
-    nie.style.setProperty('--dy', '0px');
-    nie.removeEventListener('pointerdown', ucieknij);
-    nie.removeEventListener('touchstart', ucieknij);
-    nie.removeEventListener('mouseenter', ucieknij);
-  }
-
-  function odpowiedz(tekst, withBurst, zrodlo){
-    sText.innerHTML = tekst;
+  /* Reszta strony jest zamknięta do czasu kliknięcia „Tak”.
+     Przycisk „nie mam nastroju” jest celowo martwy — to jest żart, nie usterka,
+     dlatego pod nim stoi podpis, żeby nie wyglądało na zepsutą stronę. */
+  function odblokuj(zBuchem){
     sr.classList.add('on');
-    if (withBurst) burstFrom(zrodlo || tak, 70);
-    tak.disabled = true; nie.disabled = true;
-    tak.style.opacity = '.5'; nie.style.opacity = '.4';
-    tak.style.pointerEvents = 'none'; nie.style.pointerEvents = 'none';
+
+    var zamkniete = document.querySelectorAll('.zamkniete');
+    for (var i = 0; i < zamkniete.length; i++){
+      zamkniete[i].classList.remove('zamkniete');
+      if (zBuchem && !RM) zamkniete[i].classList.add('odblokowane');
+    }
+
+    if (zBuchem) burstFrom(tak, 80);
+    if (dalej) dalej.classList.add('on');
+
+    tak.disabled = true;
+    tak.style.opacity = '.55';
+    tak.style.pointerEvents = 'none';
+    tak.textContent = 'No i pięknie.';
   }
-
-  var ODP_TAK = 'Wiedziałem.<br>I tak, dokładnie o to chodziło.';
-  var ODP_NIE = 'To też jest w porządku.<br>Zostaw to na później — fondant i tak czeka.';
-
-  nie.addEventListener('pointerdown', ucieknij, {passive:false});
-  nie.addEventListener('touchstart',  ucieknij, {passive:false});
-  nie.addEventListener('mouseenter',  ucieknij);
-  nie.addEventListener('click', function(){
-    if (poddala){ odpowiedz(ODP_NIE, true, nie); remember('usmiech','nie'); }
-  });
 
   tak.addEventListener('click', function(){
-    odpowiedz(ODP_TAK, true, tak);
+    odblokuj(true);
     remember('usmiech','tak');
   });
 
-  var zapamietane = recall('usmiech');
-  if (zapamietane === 'tak') odpowiedz(ODP_TAK, false);
-  else if (zapamietane === 'nie'){ poddaj(); odpowiedz(ODP_NIE, false); }
-
-  var yb = document.getElementById('yesBtn'), dn = document.getElementById('done');
-  function inviteDone(withBurst){
-    dn.classList.add('on');
-    if (withBurst) burstFrom(yb, 110);
-    yb.disabled = true;
-    yb.style.opacity = '.5';
-    yb.textContent = 'Zaproszenie przyjęte ✓';
-  }
-  yb.addEventListener('click', function(){ inviteDone(true); remember('fondant','1'); });
-  if (recall('fondant')) inviteDone(false);
+  if (recall('usmiech') === 'tak') odblokuj(false);
 
   /* ---------- Pupa: dotknij ją ---------- */
   var pb = document.getElementById('pupaBtn'),
