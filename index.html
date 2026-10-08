@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-<meta name="theme-color" content="#FFF6F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#FFF6F0" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FBF3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#FBF3EE" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="only light">
 <title>Dla Julii</title>
 <meta property="og:title" content="Dla Julii">
@@ -23,17 +23,17 @@
    ============================================================ */
 
 :root{
-  --cream:#FFF6F0;
-  --cream-2:#FFEEE5;
-  --blush:#FFDCE2;
-  --pink:#F4879B;
-  --pink-deep:#D4536E;
-  --pink-soft:#FFB9C6;
-  --choco:#2A1711;
+  --cream:#FBF3EE;
+  --cream-2:#F6EAE2;
+  --blush:#F3D7DA;
+  --pink:#D98A95;
+  --pink-deep:#A8505F;
+  --pink-soft:#EDC2C8;
+  --choco:#33201A;
   --choco-2:#43261A;
-  --gold:#DFA05A;
+  --gold:#C08A4A;
   --ink:#2B1C18;
-  --ink-soft:#7A5F55;
+  --ink-soft:#6B5248;
   --ink-faint:#A98C81;
 
   --fs-display:clamp(2.9rem,13vw,5rem);
@@ -72,6 +72,7 @@ img{max-width:100%;display:block;height:auto;}
 button{font:inherit;color:inherit;}
 
 h1,h2,h3{
+  text-wrap:balance;
   font-family:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;
   font-weight:600;
   line-height:1.08;
@@ -80,7 +81,7 @@ h1,h2,h3{
   font-variation-settings:'SOFT' 40,'WONK' 1;
 }
 
-p{margin:0 0 1.1em;}
+p{margin:0 0 1.1em;text-wrap:pretty;}
 p:last-child{margin-bottom:0;}
 
 /* ---------- układ ---------- */
@@ -93,7 +94,7 @@ p:last-child{margin-bottom:0;}
 
 .sec--dark{background:var(--choco);color:#F6E8E0;}
 .sec--dark h2{color:#FFF;}
-.sec--pink{background:linear-gradient(170deg,#FFE4EA 0%,#FFD2DC 100%);}
+.sec--pink{background:linear-gradient(170deg,#F7E3E1 0%,#F0D3D2 100%);}
 .sec--tight{padding-top:clamp(3rem,12vw,5rem);padding-bottom:clamp(3rem,12vw,5rem);}
 
 .eyebrow{
@@ -107,7 +108,11 @@ p:last-child{margin-bottom:0;}
 .sec--dark .eyebrow{color:var(--gold);}
 
 .lead{font-size:clamp(1.12rem,4.6vw,1.35rem);line-height:1.58;}
+.wrap p:not(.eyebrow):not(.sig){max-width:34ch;margin-left:auto;margin-right:auto;}
+.sec--dark .wrap p,#usmiech p,#trudniej p,#pupa p,#final p{margin-left:auto;margin-right:auto;}
 .muted{color:var(--ink-soft);}
+.aside{font-size:.88rem;color:var(--ink-faint);font-style:italic;margin-top:.9rem;}
+.aside--dark{color:#B49A8E;}
 .sec--dark .muted{color:#C9AFA3;}
 
 /* ---------- pasek postępu ---------- */
@@ -130,8 +135,8 @@ p:last-child{margin-bottom:0;}
   text-align:center;
   padding:calc(var(--pad) + env(safe-area-inset-top)) var(--pad) calc(var(--pad) + env(safe-area-inset-bottom));
   background:
-    radial-gradient(120% 80% at 50% 0%,#FFE9EF 0%,rgba(255,233,239,0) 60%),
-    radial-gradient(90% 60% at 10% 100%,#FFF0E2 0%,rgba(255,240,226,0) 70%),
+    radial-gradient(120% 80% at 50% 0%,#F7E4E4 0%,rgba(247,228,228,0) 60%),
+    radial-gradient(90% 60% at 10% 100%,#F8EDE0 0%,rgba(248,237,224,0) 70%),
     var(--cream);
   overflow:hidden;
 }
@@ -179,8 +184,9 @@ p:last-child{margin-bottom:0;}
    ============================================================ */
 #usmiech{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);text-align:center;}
 .big-ask{font-size:var(--fs-h2);margin:0 0 1.4rem;}
+.ask{position:relative;height:11.5rem;margin-top:1.9rem;}
 .smile-btn{
-  margin-top:1.8rem;
+  position:absolute;left:50%;top:0;transform:translateX(-50%);
   border:none;border-radius:999px;
   padding:1.05rem 2rem;min-height:52px;
   background:linear-gradient(135deg,var(--pink),var(--pink-deep));
@@ -190,7 +196,20 @@ p:last-child{margin-bottom:0;}
   cursor:pointer;touch-action:manipulation;
   transition:transform .22s var(--ease),box-shadow .22s var(--ease);
 }
-.smile-btn:active{transform:scale(.95);box-shadow:0 6px 16px -8px rgba(212,83,110,.6);}
+.smile-btn:active{transform:translateX(-50%) scale(.95);box-shadow:0 6px 16px -8px rgba(168,80,95,.6);}
+
+.no-btn{
+  position:absolute;left:50%;top:5.4rem;
+  transform:translate(calc(-50% + var(--dx,0px)),var(--dy,0px));
+  border:1px solid rgba(107,82,72,.3);border-radius:999px;
+  padding:.8rem 1.4rem;min-height:44px;
+  background:transparent;color:var(--ink-soft);
+  font-weight:600;font-size:.92rem;
+  cursor:pointer;touch-action:manipulation;
+  transition:transform .3s var(--ease),opacity .3s var(--ease),border-color .3s;
+  white-space:nowrap;
+}
+.no-btn.gives-up{border-color:var(--pink-deep);color:var(--pink-deep);}
 .smile-reply{
   margin-top:1.5rem;
   max-height:0;opacity:0;overflow:hidden;
@@ -248,7 +267,7 @@ p:last-child{margin-bottom:0;}
    PRZY TOBIE
    ============================================================ */
 #przy-tobie{
-  background:linear-gradient(180deg,var(--cream-2) 0%,#FFE6DC 100%);
+  background:linear-gradient(180deg,var(--cream-2) 0%,#F4E2D8 100%);
 }
 .photo-bleed{
   margin:2.4rem calc(var(--pad) * -1) 2.4rem;
@@ -279,8 +298,25 @@ p:last-child{margin-bottom:0;}
 /* ============================================================
    PUPA
    ============================================================ */
-#pupa{background:linear-gradient(170deg,#FFE4EA 0%,#FFD0DB 100%);text-align:center;overflow:hidden;}
-.pupa-svg{width:clamp(130px,40vw,170px);margin:0 auto 1.6rem;display:block;}
+#pupa{background:linear-gradient(170deg,#F7E3E1 0%,#EFD2D1 100%);text-align:center;overflow:hidden;}
+.pupa-tap{display:block;margin:0 auto;background:none;border:0;padding:0;cursor:pointer;touch-action:manipulation;}
+.pupa-svg{width:clamp(130px,40vw,170px);margin:0 auto;display:block;}
+.pupa-wob{animation:wob .75s var(--ease);}
+@keyframes wob{
+  0%{transform:none;}
+  22%{transform:rotate(-8deg) scale(1.07);}
+  48%{transform:rotate(7deg) scale(1.07);}
+  72%{transform:rotate(-4deg) scale(1.03);}
+  100%{transform:none;}
+}
+.pupa-say{
+  min-height:2.1em;margin:.7rem 0 1rem;
+  font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.3;
+  color:var(--pink-deep);opacity:0;transform:translateY(5px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
+.pupa-say.on{opacity:1;transform:none;}
+.pupa-hint{font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--pink-deep);opacity:.55;font-weight:600;margin:.8rem 0 0;}
 .pupa-svg .eye-l,.pupa-svg .eye-r{transform-origin:center;animation:blink 5.2s infinite;}
 .pupa-svg .eye-r{animation-delay:.07s;}
 @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(.08);}}
@@ -361,7 +397,7 @@ p:last-child{margin-bottom:0;}
    FINAŁ
    ============================================================ */
 #final{
-  background:linear-gradient(180deg,#FFE6DC 0%,var(--cream) 55%);
+  background:linear-gradient(180deg,#F4E2D8 0%,var(--cream) 55%);
   text-align:center;
   padding-bottom:calc(clamp(5rem,20vw,8rem) + env(safe-area-inset-bottom));
 }
@@ -401,19 +437,6 @@ p:last-child{margin-bottom:0;}
   <div class="cue" aria-hidden="true">przewiń<span></span></div>
 </header>
 
-<!-- ============================ UŚMIECH ============================ -->
-<section class="sec" id="usmiech">
-  <div class="wrap">
-    <p class="eyebrow rv">najpierw jedna rzecz</p>
-    <h2 class="big-ask rv" style="--d:80ms">Uśmiechnij się.</h2>
-    <p class="lead muted rv" style="--d:160ms">Tak po prostu. Nie musisz mieć powodu — ale jeśli potrzebujesz, to masz go niżej, przez całą stronę.</p>
-    <button class="smile-btn rv" id="smileBtn" style="--d:240ms">No dobra, uśmiechnęłam się</button>
-    <div class="smile-reply" id="smileReply">
-      <p>Wiedziałem.<br>I tak, właśnie o to chodziło.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ============================ LICZNIK ============================ -->
 <section class="sec sec--dark" id="licznik">
   <div class="wrap">
@@ -425,6 +448,7 @@ p:last-child{margin-bottom:0;}
       <div class="cell"><b id="cMin">—</b><i>minut</i></div>
     </div>
     <p class="muted rv" style="--d:220ms">I ani jednego, który chciałbym oddać.</p>
+    <p class="aside rv" style="--d:260ms">Tak, liczyłem. Tak, dwa razy.</p>
     <div class="soon rv" style="--d:300ms" id="soon"></div>
   </div>
 </section>
@@ -434,7 +458,8 @@ p:last-child{margin-bottom:0;}
   <div class="wrap">
     <p class="quiet rv">Wiem, że ostatnio było nam trudniej.</p>
     <hr class="rule rv" style="--d:140ms">
-    <p class="muted rv" style="--d:220ms">Nie piszę tego, żeby to rozdrapywać. Piszę, bo chcę, żeby było nam znowu dobrze — i robię pierwszy krok.</p>
+    <p class="muted rv" style="--d:220ms">Nie piszę tego, żeby cokolwiek rozdrapywać. Piszę, bo chcę, żeby wróciło nam na dobre tory — i zaczynam od siebie.</p>
+    <p class="aside rv" style="--d:300ms">To było całe ciężkie zdanie. Dalej jest już tylko lekko.</p>
   </div>
 </section>
 
@@ -451,9 +476,9 @@ p:last-child{margin-bottom:0;}
       </picture>
     </figure>
 
-    <p class="lead rv">To nie jest ładne zdanie na stronę. To po prostu prawda — jestem spokojniejszy, cierpliwszy i bardziej sobą, odkąd jesteś.</p>
-    <p class="rv" style="--d:90ms">Dajesz mi szczęście każdego dnia. Nie od święta, nie przy okazji — każdego zwykłego, nudnego dnia, w którym nic szczególnego się nie dzieje.</p>
-    <p class="rv" style="--d:170ms">I to są moje ulubione dni.</p>
+    <p class="lead rv">To nie jest ładne zdanie na stronę. Przy Tobie jestem spokojniejszy, cierpliwszy i dużo mniej uparty. Nie wiem, jak to robisz.</p>
+    <p class="rv" style="--d:90ms">I nie chodzi o szczęście od święta. Dajesz mi je w zwykłe wtorki, kiedy nic szczególnego się nie dzieje.</p>
+    <p class="rv" style="--d:170ms">To są moje ulubione dni.</p>
   </div>
 </section>
 
@@ -461,51 +486,22 @@ p:last-child{margin-bottom:0;}
 <section class="sec" id="nasze">
   <div class="wrap">
     <p class="eyebrow rv">nasze rzeczy</p>
-    <h2 class="rv" style="--d:70ms">Z Tobą nawet nic nierobienie jest dobre.</h2>
+    <h2 class="rv" style="--d:70ms">Z Tobą nawet nicnierobienie jest dobre.</h2>
 
     <ul class="things">
       <li class="thing rv" style="--d:120ms">
         <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="#fff" stroke="#2B1C18" stroke-width="3"/><path d="M3 24h42" stroke="#2B1C18" stroke-width="3"/><path d="M3 24a21 21 0 0 1 42 0z" fill="#F4879B" stroke="#2B1C18" stroke-width="3"/><circle cx="24" cy="24" r="7" fill="#fff" stroke="#2B1C18" stroke-width="3"/><circle cx="24" cy="24" r="2.6" fill="#2B1C18"/></svg>
-        <div><h3>Pokemony</h3><p>Nasze wieczory, w których strasznie przejmujemy się czymś zupełnie nieistotnym. Uwielbiam to.</p></div>
+        <div><h3>Pokemony</h3><p>Uwielbiam, jak przegrywasz ze mną i tłumaczysz to pechem. Oboje udajemy, że to nie jest rywalizacja.</p></div>
       </li>
       <li class="thing rv" style="--d:200ms">
         <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="12" width="40" height="28" rx="5" fill="#FFDCE2" stroke="#2B1C18" stroke-width="3"/><path d="M16 5l8 7 8-7" fill="none" stroke="#2B1C18" stroke-width="3" stroke-linecap="round"/><circle cx="34" cy="26" r="3" fill="#F4879B"/></svg>
-        <div><h3>Bajki</h3><p>Dwie dorosłe osoby, koc i kreskówka. Zero wstydu, sto procent frajdy.</p></div>
+        <div><h3>Bajki</h3><p>Zasypiasz w połowie odcinka, a i tak chcesz go dokończyć. Dwie dorosłe osoby, koc i kreskówka.</p></div>
       </li>
       <li class="thing rv" style="--d:280ms">
         <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="18" width="34" height="22" rx="3" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/><rect x="13" y="11" width="8" height="8" rx="2" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/><rect x="27" y="11" width="8" height="8" rx="2" fill="#DFA05A" stroke="#2B1C18" stroke-width="3"/></svg>
-        <div><h3>Lego</h3><p>Godziny ciszy, jedna zgubiona część i ta satysfakcja na końcu. Zbudowaliśmy już trochę więcej niż klocki.</p></div>
+        <div><h3>Lego</h3><p>Ja szukam jednego klocka dziesięć minut, Ty znajdujesz go w trzy sekundy. Instrukcja mówi 45 minut — nam zawsze zajmuje trzy godziny i to jest najlepsza część.</p></div>
       </li>
     </ul>
-  </div>
-</section>
-
-<!-- ============================ PUPA ============================ -->
-<section class="sec" id="pupa">
-  <div class="wrap">
-    <svg class="pupa-svg pupa-float" viewBox="0 0 200 180" aria-hidden="true">
-      <ellipse cx="100" cy="162" rx="52" ry="8" fill="rgba(120,50,70,.12)"/>
-      <path d="M100 18c40 0 66 30 66 66 0 42-30 68-66 68s-66-26-66-68c0-36 26-66 66-66z" fill="#F6DFA8" stroke="#2B1C18" stroke-width="4"/>
-      <ellipse class="eye-l" cx="76" cy="80" rx="19" ry="21" fill="#fff" stroke="#2B1C18" stroke-width="4"/>
-      <ellipse class="eye-r" cx="124" cy="80" rx="19" ry="21" fill="#fff" stroke="#2B1C18" stroke-width="4"/>
-      <circle cx="76" cy="82" r="5.5" fill="#2B1C18"/>
-      <circle cx="124" cy="82" r="5.5" fill="#2B1C18"/>
-      <path d="M80 116q20 16 40 0" fill="none" stroke="#2B1C18" stroke-width="4.5" stroke-linecap="round"/>
-      <circle cx="56" cy="104" r="7" fill="#F4879B" opacity=".55"/>
-      <circle cx="144" cy="104" r="7" fill="#F4879B" opacity=".55"/>
-    </svg>
-
-    <p class="eyebrow rv">sprawa najwyższej wagi</p>
-    <h2 class="rv" style="--d:70ms">Pupa pozdrawia.</h2>
-    <p class="lead rv" style="--d:140ms">Mała, nielogiczna, pochłania wszystko i wszyscy i tak ją kochają. Trochę Cię rozumiem, Pupo.</p>
-
-    <figure class="tort rv-s" style="--d:220ms">
-      <picture>
-        <source srcset="img/tort-pupa.webp" type="image/webp">
-        <img src="img/tort-pupa.jpg" width="768" height="1024" alt="Julia z różowym tortem urodzinowym z twarzą Pupy" loading="lazy" decoding="async">
-      </picture>
-      <figcaption>21 lat i tort z Pupą.<br>Ten uśmiech — proszę, znajdź go dzisiaj.</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -514,12 +510,13 @@ p:last-child{margin-bottom:0;}
   <div class="wrap">
     <p class="eyebrow rv">dowody w sprawie</p>
     <h2 class="rv" style="--d:70ms">Siedem miesięcy w kilku kadrach.</h2>
+    <p class="aside rv" style="--d:130ms">Ani jednego złego dnia na żadnym z nich.</p>
 
     <div class="gal">
       <figure class="pol rv-s">
         <picture><source srcset="img/julia-aniolki.webp" type="image/webp">
         <img src="img/julia-aniolki.jpg" width="768" height="1024" alt="Julia między dwiema drewnianymi figurami aniołków" loading="lazy" decoding="async"></picture>
-        <figcaption>Dwa aniołki i Ty — trzeci, najładniejszy.</figcaption>
+        <figcaption>Dwa aniołki z drewna.<br>I jeden prawdziwy, w środku.</figcaption>
       </figure>
 
       <figure class="pol rv-s">
@@ -545,6 +542,58 @@ p:last-child{margin-bottom:0;}
   </div>
 </section>
 
+<!-- ============================ UŚMIECH ============================ -->
+<section class="sec" id="usmiech">
+  <div class="wrap">
+    <p class="eyebrow rv">mam jedną prośbę</p>
+    <h2 class="big-ask rv" style="--d:80ms">Uśmiechniesz się teraz?</h2>
+    <p class="lead muted rv" style="--d:160ms">Nie musisz mieć powodu. Ale jeśli potrzebujesz, to masz ich kilka wyżej.</p>
+
+    <div class="ask rv" style="--d:240ms" id="ask">
+      <button class="smile-btn" id="takBtn">Tak</button>
+      <button class="no-btn" id="nieBtn">nie mam nastroju</button>
+    </div>
+
+    <div class="smile-reply" id="smileReply">
+      <p id="smileText">Wiedziałem.<br>I tak, dokładnie o to chodziło.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PUPA ============================ -->
+<section class="sec" id="pupa">
+  <div class="wrap">
+    <button class="pupa-tap" id="pupaBtn" aria-label="Dotknij Pupy">
+    <svg class="pupa-svg pupa-float" id="pupaSvg" viewBox="0 0 200 180" aria-hidden="true">
+      <ellipse cx="100" cy="162" rx="52" ry="8" fill="rgba(120,50,70,.12)"/>
+      <path id="pupaBody" d="M100 18c40 0 66 30 66 66 0 42-30 68-66 68s-66-26-66-68c0-36 26-66 66-66z" fill="#F6DFA8" stroke="#2B1C18" stroke-width="4" style="transition:fill .45s ease"/>
+      <ellipse class="eye-l" cx="76" cy="80" rx="19" ry="21" fill="#fff" stroke="#2B1C18" stroke-width="4"/>
+      <ellipse class="eye-r" cx="124" cy="80" rx="19" ry="21" fill="#fff" stroke="#2B1C18" stroke-width="4"/>
+      <circle cx="76" cy="82" r="5.5" fill="#2B1C18"/>
+      <circle cx="124" cy="82" r="5.5" fill="#2B1C18"/>
+      <path d="M80 116q20 16 40 0" fill="none" stroke="#2B1C18" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="56" cy="104" r="7" fill="#F4879B" opacity=".55"/>
+      <circle cx="144" cy="104" r="7" fill="#F4879B" opacity=".55"/>
+    </svg>
+    </button>
+    <p class="pupa-hint" id="pupaHint">dotknij jej — zmieni kolor</p>
+    <p class="pupa-say" id="pupaSay" aria-live="polite"></p>
+
+    <p class="eyebrow rv">sprawa najwyższej wagi</p>
+    <h2 class="rv" style="--d:70ms">Pupa pozdrawia.</h2>
+    <p class="lead rv" style="--d:140ms">W ankiecie fanów Pupa wygrała z całą obsadą. U mnie w rankingu wygrywasz Ty — Pupa jest druga i jest o to wkurzona.</p>
+    <p class="rv" style="--d:200ms">Pupa ma zamienić całą planetę w nową. Tobie wystarczyło <span id="dniInline">209</span> dni, żeby zamienić moją.</p>
+
+    <figure class="tort rv-s" style="--d:220ms">
+      <picture>
+        <source srcset="img/tort-pupa.webp" type="image/webp">
+        <img src="img/tort-pupa.jpg" width="768" height="1024" alt="Julia z różowym tortem urodzinowym z twarzą Pupy" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>21 lat i tort z Pupą.<br>Ten uśmiech — proszę, znajdź go dzisiaj.</figcaption>
+    </figure>
+  </div>
+</section>
+
 <!-- ============================ FONDANT ============================ -->
 <section class="sec sec--dark" id="fondant">
   <div class="wrap">
@@ -558,9 +607,10 @@ p:last-child{margin-bottom:0;}
 
     <div class="inv rv" style="--d:200ms">
       <h3>Bez daty, bez planu.</h3>
-      <p class="muted">Kiedy tylko będziesz miała ochotę — dziś, jutro, za tydzień. Ty mówisz kiedy, ja się zajmuję resztą.</p>
+      <p class="muted">Czekoladowy, z płynnym środkiem, dokładnie ten Twój. Kiedy tylko chcesz — dziś, w sobotę, za dwa tygodnie. Ty mówisz kiedy, ja się zajmuję resztą.</p>
+      <p class="aside aside--dark">Zrobiłem Ci stronę internetową, bo fondant to jednak wyższa szkoła jazdy.</p>
       <button class="yes" id="yesBtn">Przyjmuję zaproszenie</button>
-      <div class="done" id="done">To teraz oficjalne.<br>Czekam na Twoje „kiedy”.</div>
+      <div class="done" id="done">Rezerwacja na dwie osoby.<br>Termin: kiedy tylko chcesz.</div>
     </div>
   </div>
 </section>
@@ -569,7 +619,8 @@ p:last-child{margin-bottom:0;}
 <section class="sec" id="final">
   <div class="wrap">
     <h2 class="final-line rv">Miłego dnia na uczelni.</h2>
-    <p class="lead muted rv" style="--d:110ms">A jak będzie ciężko, wróć tu na chwilę. Strona nigdzie nie ucieka. Ja też nie.</p>
+    <p class="lead muted rv" style="--d:110ms">Nie mam na koniec nic mądrego. Po prostu bardzo się cieszę, że jesteś.</p>
+    <p class="rv" style="--d:160ms">A jak dzień się zrobi ciężki, wróć tu na chwilę. Strona nigdzie nie ucieka. Ja też nie.</p>
     <p class="sig rv" style="--d:200ms">Kocham Cię.<small>Michał</small></p>
   </div>
 </section>
@@ -628,6 +679,8 @@ p:last-child{margin-bottom:0;}
     eD.textContent = Math.floor(totalMin / 1440).toLocaleString('pl-PL');
     eG.textContent = Math.floor(totalMin / 60).toLocaleString('pl-PL');
     eM.textContent = totalMin.toLocaleString('pl-PL');
+    var inl = document.getElementById('dniInline');
+    if (inl) inl.textContent = Math.floor(totalMin / 1440).toLocaleString('pl-PL');
 
     var left = Math.ceil((SIEDEM - now) / 86400000);
     if (left > 0){
@@ -670,7 +723,7 @@ p:last-child{margin-bottom:0;}
       hx.bezierCurveTo(-9,-4,-7,-13,0,-8);
       hx.bezierCurveTo(7,-13,9,-4,0,5);
       hx.closePath();
-      hx.fillStyle = '#F4879B'; hx.fill(); hx.restore();
+      hx.fillStyle = '#D98A95'; hx.fill(); hx.restore();
     }
     function loop(){
       hx.clearRect(0,0,hc.offsetWidth,hc.offsetHeight);
@@ -699,7 +752,7 @@ p:last-child{margin-bottom:0;}
   var cdpr = Math.min(window.devicePixelRatio || 1, 2);
   function csize(){ cc.width = window.innerWidth*cdpr; cc.height = window.innerHeight*cdpr; cx.setTransform(cdpr,0,0,cdpr,0,0); }
   csize(); window.addEventListener('resize', csize);
-  var COLORS = ['#F4879B','#DFA05A','#FFD2DC','#D4536E','#F6DFA8','#fff'];
+  var COLORS = ['#D98A95','#C08A4A','#EDC2C8','#A8505F','#E8D2A4','#fff'];
 
   function burst(x,y,n){
     if (RM) return;
@@ -735,23 +788,131 @@ p:last-child{margin-bottom:0;}
     burst(r.left + r.width/2, r.top + r.height/2, n || 70);
   }
 
+  /* ---------- pamięć (gdyby wróciła tu później) ---------- */
+  function remember(k, v){ try{ localStorage.setItem('julia:' + k, v); }catch(e){} }
+  function recall(k){ try{ return localStorage.getItem('julia:' + k); }catch(e){ return null; } }
+
   /* ---------- przyciski ---------- */
-  var sb = document.getElementById('smileBtn'), sr = document.getElementById('smileReply');
-  sb.addEventListener('click', function(){
+  var ask   = document.getElementById('ask'),
+      tak   = document.getElementById('takBtn'),
+      nie   = document.getElementById('nieBtn'),
+      sr    = document.getElementById('smileReply'),
+      sText = document.getElementById('smileText');
+
+  var UNIKI = ['uhm...', 'nie tak szybko', 'ostatnia szansa'];
+  var uniki = 0, poddala = false;
+
+  /* przycisk "nie mam nastroju" ucieka — ale najwyżej 3 razy i sam się poddaje.
+     Żart jest ze mnie, nie z niej: oba wyjścia prowadzą w to samo ciepłe miejsce. */
+  function ucieknij(e){
+    if (poddala) return;
+    if (e && e.cancelable) e.preventDefault();
+    uniki++;
+
+    if (uniki > UNIKI.length){
+      poddaj();
+      return;
+    }
+    nie.textContent = UNIKI[uniki - 1];
+
+    var box = ask.getBoundingClientRect(), b = nie.getBoundingClientRect();
+    var zapasX = Math.max(0, (box.width - b.width) / 2 - 6);
+    var gora   = -(b.top - box.top) + 6;
+    var dol    = (box.bottom - b.bottom) - 6;
+
+    var dx = (Math.random() * 2 - 1) * zapasX;
+    var dy = gora + Math.random() * Math.max(0, dol - gora);
+
+    nie.style.setProperty('--dx', Math.round(dx) + 'px');
+    nie.style.setProperty('--dy', Math.round(dy) + 'px');
+  }
+
+  function poddaj(){
+    poddala = true;
+    nie.classList.add('gives-up');
+    nie.textContent = 'no dobra, wygrałaś';
+    nie.style.setProperty('--dx', '0px');
+    nie.style.setProperty('--dy', '0px');
+    nie.removeEventListener('pointerdown', ucieknij);
+    nie.removeEventListener('touchstart', ucieknij);
+    nie.removeEventListener('mouseenter', ucieknij);
+  }
+
+  function odpowiedz(tekst, withBurst, zrodlo){
+    sText.innerHTML = tekst;
     sr.classList.add('on');
-    burstFrom(sb, 60);
-    sb.disabled = true;
-    sb.style.opacity = '.55';
-    sb.textContent = 'No i pięknie.';
+    if (withBurst) burstFrom(zrodlo || tak, 70);
+    tak.disabled = true; nie.disabled = true;
+    tak.style.opacity = '.5'; nie.style.opacity = '.4';
+    tak.style.pointerEvents = 'none'; nie.style.pointerEvents = 'none';
+  }
+
+  var ODP_TAK = 'Wiedziałem.<br>I tak, dokładnie o to chodziło.';
+  var ODP_NIE = 'To też jest w porządku.<br>Zostaw to na później — fondant i tak czeka.';
+
+  nie.addEventListener('pointerdown', ucieknij, {passive:false});
+  nie.addEventListener('touchstart',  ucieknij, {passive:false});
+  nie.addEventListener('mouseenter',  ucieknij);
+  nie.addEventListener('click', function(){
+    if (poddala){ odpowiedz(ODP_NIE, true, nie); remember('usmiech','nie'); }
   });
 
+  tak.addEventListener('click', function(){
+    odpowiedz(ODP_TAK, true, tak);
+    remember('usmiech','tak');
+  });
+
+  var zapamietane = recall('usmiech');
+  if (zapamietane === 'tak') odpowiedz(ODP_TAK, false);
+  else if (zapamietane === 'nie'){ poddaj(); odpowiedz(ODP_NIE, false); }
+
   var yb = document.getElementById('yesBtn'), dn = document.getElementById('done');
-  yb.addEventListener('click', function(){
+  function inviteDone(withBurst){
     dn.classList.add('on');
-    burstFrom(yb, 110);
+    if (withBurst) burstFrom(yb, 110);
     yb.disabled = true;
     yb.style.opacity = '.5';
     yb.textContent = 'Zaproszenie przyjęte ✓';
+  }
+  yb.addEventListener('click', function(){ inviteDone(true); remember('fondant','1'); });
+  if (recall('fondant')) inviteDone(false);
+
+  /* ---------- Pupa: dotknij ją ---------- */
+  var pb = document.getElementById('pupaBtn'),
+      ps = document.getElementById('pupaSvg'),
+      pSay = document.getElementById('pupaSay'),
+      pHint = document.getElementById('pupaHint');
+
+  /* W serialu kolor Pupy coś znaczy. Pierwsze cztery są z kanonu, piąty jest mój. */
+  var PUPOMETR = [
+    {kolor:'#F6DFA8', opis:'żółty — stan fabryczny, wszystko gra'},
+    {kolor:'#F2E300', opis:'miga na żółto — zgubiła wi-fi (jak ja, kiedy nie piszesz trzy godziny)'},
+    {kolor:'#2F3F72', opis:'granatowy — kończy się abonament Hulu'},
+    {kolor:'#8FC7E8', opis:'błękitny — będzie darmowy Xbox'},
+    {kolor:'#E8AFBC', opis:'różowy — ktoś właśnie dostał tort ze swoją twarzą (kolor nieudokumentowany w kanonie)'}
+  ];
+  var pi = 0;
+  var pBody = document.getElementById('pupaBody');
+
+  pb.addEventListener('click', function(){
+    if (pHint){ pHint.style.transition = 'opacity .4s'; pHint.style.opacity = '0'; }
+
+    pi++;
+    var st = PUPOMETR[pi % PUPOMETR.length];
+    if (pBody) pBody.setAttribute('fill', st.kolor);
+    pSay.textContent = st.opis;
+    pSay.classList.add('on');
+
+    if (!RM){
+      ps.classList.remove('pupa-float', 'pupa-wob');
+      void ps.offsetWidth;                 // wymuszenie restartu animacji
+      ps.classList.add('pupa-wob');
+      setTimeout(function(){
+        ps.classList.remove('pupa-wob');
+        ps.classList.add('pupa-float');
+      }, 760);
+      burstFrom(pb, 24);
+    }
   });
 })();
 </script>
