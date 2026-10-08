@@ -1,0 +1,6 @@
+# Oryginalne zdjęcia z iPhone'a — zawierają EXIF z GPS.
+# NIE wrzucamy ich na publiczne repo. W img/ leżą wersje oczyszczone.
+_oryginaly/
+*_1_105_c.jpeg
+
+.DS_Store
