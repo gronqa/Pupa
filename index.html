@@ -145,7 +145,24 @@ p:last-child{margin-bottom:0;}
   overflow:hidden;
 }
 #hearts{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-.hero-in{position:relative;z-index:2;}
+.hero-in{position:relative;z-index:3;}
+
+/* Pupa wychyla się zza lewego dolnego rogu — pod tekstem, nad tłem */
+.pupa-peek{
+  position:absolute;z-index:1;
+  left:-5%;
+  bottom:calc(-2% + env(safe-area-inset-bottom));
+  width:min(44vw,205px);height:auto;
+  pointer-events:none;
+  filter:drop-shadow(0 10px 22px rgba(120,70,60,.16));
+  animation:peek 1.05s var(--ease-out) .45s both;
+}
+@keyframes peek{
+  from{transform:translateY(42%) rotate(-7deg);opacity:0;}
+  to{transform:none;opacity:1;}
+}
+.pupa-peek.plywa{animation:plyw 6.5s ease-in-out infinite;}
+@keyframes plyw{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-9px) rotate(1.4deg);}}
 
 .hero-hi{
   font-size:var(--fs-display);
@@ -420,7 +437,7 @@ p:last-child{margin-bottom:0;}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .rv,.rv-s{opacity:1!important;transform:none!important;transition:none!important;}
-  .cue span,.pupa-float,.pupa-svg .eye-l,.pupa-svg .eye-r{animation:none!important;}
+  .cue span,.pupa-float,.pupa-svg .eye-l,.pupa-svg .eye-r,.pupa-peek,.pupa-peek.plywa{animation:none!important;opacity:1!important;transform:none!important;}
   .tort,.pol{transform:none!important;}
   #hearts,#confetti{display:none;}
 }
@@ -435,9 +452,13 @@ p:last-child{margin-bottom:0;}
   <canvas id="hearts" aria-hidden="true"></canvas>
   <div class="hero-in">
     <p class="eyebrow rv">13.03.2026 &rarr; dziś</p>
-    <h1 class="hero-hi rv" style="--d:90ms">Cześć,<span class="nm">Julia.</span></h1>
+    <h1 class="hero-hi rv" style="--d:90ms">Cześć,<span class="nm">Pupa.</span></h1>
     <p class="hero-sub rv" style="--d:220ms">Wiem, że jesteś teraz na uczelni.<br>Daj mi dwie minuty — warto.</p>
   </div>
+  <picture>
+    <source srcset="img/pupa-postac.webp" type="image/webp">
+    <img class="pupa-peek" src="img/pupa-postac.png" width="282" height="321" alt="" aria-hidden="true" decoding="async">
+  </picture>
   <div class="cue" aria-hidden="true">przewiń<span></span></div>
 </header>
 
@@ -700,6 +721,16 @@ p:last-child{margin-bottom:0;}
   }
   tick();
   setInterval(tick, 10000);
+
+  /* ---------- Pupa w hero: po wjeździe przechodzi w pływanie ---------- */
+  var peek = document.querySelector('.pupa-peek');
+  if (peek && !RM){
+    peek.addEventListener('animationend', function onEnd(e){
+      if (e.animationName !== 'peek') return;
+      peek.removeEventListener('animationend', onEnd);
+      peek.classList.add('plywa');
+    });
+  }
 
   /* ---------- serduszka w hero ---------- */
   var hc = document.getElementById('hearts');
